@@ -1,8 +1,10 @@
 // MovieList Component
+import SearchBar from "./SearchBar";
+
 export default function MovieList() {
   return (
     <div>
-      <h1>MovieList</h1>
+      <SearchBar className="mt-14" />
     </div>
   );
 }
