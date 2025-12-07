@@ -1,4 +1,8 @@
 // MovieCard Component
 export default function MovieCard() {
-  return <div>Movie Card Component</div>;
+  return (
+    <div>
+      <h1>Movie Card Component</h1>
+    </div>
+  );
 }
