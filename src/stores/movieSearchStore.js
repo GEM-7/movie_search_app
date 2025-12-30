@@ -2,20 +2,25 @@
 import { create } from "zustand";
 
 export const useMovieStore = create((set) => ({
+    // Movies
     movies: [],
     setMovies: (movies) => set({ movies }),
     addMovie: (movie) => set((state) => ({ movies: [...state.movies, movie] })),
     removeMovie: (movie) => set((state) => ({ movies: state.movies.filter((m) => m.id !== movie.id) })),
     clearMovies: () => set({ movies: [] }),
+    // Favorite Movies
     favoriteMovies: [],
     setFavoriteMovies: (movies) => set({ favoriteMovies: movies }),
     addFavoriteMovie: (movie) => set((state) => ({ favoriteMovies: [...state.favoriteMovies, movie] })),
     removeFavoriteMovie: (movie) => set((state) => ({ favoriteMovies: state.favoriteMovies.filter((m) => m.id !== movie.id) })),
     clearFavoriteMovies: () => set({ favoriteMovies: [] }),
+    // Search Query
     searchQuery: "",
     setSearchQuery: (query) => set({ searchQuery: query }),
+    // Loading
     isLoading: false,
     setIsLoading: (loading) => set({ isLoading: loading }),
+    // Error
     error: null,
     setError: (error) => set({ error }),
     searchMovies: async (query) => {
@@ -40,6 +45,7 @@ export const useMovieStore = create((set) => ({
             set({ error: error.message, isLoading: false, movies: [] });
         }
     },
+    // Fetch Movie Details
     fetchMovieDetails: async (id) => {
         set({ isLoading: true });
         try {
