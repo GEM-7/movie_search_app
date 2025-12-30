@@ -1,3 +1,4 @@
+// App.jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/NavBar";
 import MovieList from "./components/MovieList";
