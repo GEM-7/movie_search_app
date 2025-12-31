@@ -8,7 +8,7 @@ A React-based movie search application built as a final project for ALX Front-En
 
 - **Search**: Query movies by title using OMDb API
 - **Filtering**: Filter results by year and type
-- **Movie Details**: View comprehensive information about selected movies
+- **Movie List**: View information on search criteria
 - **Favorites**: Save and persist favorite movies locally
 
 ## Tech Stack
