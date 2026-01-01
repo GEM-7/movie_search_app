@@ -8,7 +8,7 @@ A React-based movie search application built as a final project for ALX Front-En
 
 - **Search**: Query movies by title using OMDb API
 - **Filtering**: Filter results by year and type
-- **Movie Details**: View comprehensive information about selected movies
+- **Movie List**: View information on search criteria
 - **Favorites**: Save and persist favorite movies locally
 
 ## Tech Stack
@@ -25,7 +25,6 @@ A React-based movie search application built as a final project for ALX Front-En
 - `Filter` - Year and type filters
 - `MovieList` - Display search results
 - `MovieCard` - Individual movie card
-- `MovieDetails` - Detailed movie information
 - `FavoritesPage` - Saved favorites
 - `FavoritesToggle` - Add/remove favorites button
 - `movieSearchStore.js` - Global state management
@@ -35,7 +34,7 @@ A React-based movie search application built as a final project for ALX Front-En
 | Week  | Focus                                             |
 | ----- | ------------------------------------------------- |
 | **1** | Setup, routing, SearchBar & MovieList integration |
-| **2** | MovieDetails component & second API call          |
+| **2** | MovieDetails component & API call          |
 | **3** | Zustand favorites & data persistence              |
 | **4** | Filter integration & error/loading states         |
 | **5** | Responsive design & testing                       |
