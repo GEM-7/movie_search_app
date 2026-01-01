@@ -1,8 +1,12 @@
 // FavoritesToggle Component
-export default function FavoritesToggle() {
+import { useMovieStore } from "../stores/movieSearchStore";
+
+export default function FavoritesToggle({ movie }) {
+    const { addFavoriteMovie, removeFavoriteMovie } = useMovieStore();
     return (
         <div>
-            <h1>Favorite Toggle Component</h1>
+            <button onClick={() => { addFavoriteMovie(movie) }}>Add to Favorites</button>
+            <button onClick={() => { removeFavoriteMovie(movie) }}>Remove from Favorites</button>
         </div>
     )
 }

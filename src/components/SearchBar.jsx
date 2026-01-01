@@ -25,6 +25,7 @@ export default function SearchBar() {
       <div className="relative flex items-center">
         {" "}
         <input
+          id="search"
           type="text"
           placeholder="Search..."
           value={searchQuery}

@@ -2,6 +2,7 @@
 import SearchBar from "./SearchBar";
 import MovieCard from "./MovieCard";
 import { useMovieStore } from "../stores/movieSearchStore";
+import Filter from "./Filter";
 
 export default function MovieList() {
   const { movies, isLoading, error } = useMovieStore();
@@ -9,6 +10,8 @@ export default function MovieList() {
     <div>
       {/* Search Bar */}
       <SearchBar className="mt-14" />
+      {/* Filter */}
+      <Filter />
       {/* Movie List */}
       <div className="mt-10">
         <h2 className="text-2xl font-bold ml-8 mb-4">Movie List</h2>

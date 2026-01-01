@@ -17,9 +17,13 @@ export default function MovieCard({ movie }) {
         alt={movie.Title}
         className="w-72 h-100 object-cover rounded-md"
       />
-      <h2 className="text-lg text-black text-center font-bold mt-2">{movie.Title}</h2>
-      <p className="text-gray-500 text-sm font-bold text-center">{movie.Year}</p>
-      <button  onClick={() => setIsLiked(!isLiked)}>
+      <h2 className="text-lg text-black text-center font-bold mt-2">
+        {movie.Title}
+      </h2>
+      <p className="text-gray-500 text-sm font-bold text-center">
+        {movie.Year}
+      </p>
+      <button onClick={() => setIsLiked(!isLiked)}>
         <svg
           className={`w-6 h-6 transition-colors duration-200 ${
             isLiked ? "fill-red-500 text-red-500" : "fill-none text-gray-500"
