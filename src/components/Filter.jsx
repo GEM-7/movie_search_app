@@ -2,11 +2,23 @@
 import { useState } from "react";
 import { useMovieStore } from "../stores/movieSearchStore";
 
-export default function Filter() {
-  const { filters, setFilters, searchMovies, searchQuery } = useMovieStore();
-  const [year, setYear] = useState(filters.year || "");
-  const [genre, setGenre] = useState(filters.genre || "");
-  const [rating, setRating] = useState(filters.rating || "");
+export default function Filter({ onApply, initialFilters }) {
+  const {
+    filters: storeFilters,
+    setFilters: setStoreFilters,
+    searchMovies,
+    searchQuery,
+  } = useMovieStore();
+
+  const [year, setYear] = useState(
+    initialFilters?.year || (onApply ? "" : storeFilters.year) || ""
+  );
+  const [genre, setGenre] = useState(
+    initialFilters?.genre || (onApply ? "" : storeFilters.genre) || ""
+  );
+  const [rating, setRating] = useState(
+    initialFilters?.rating || (onApply ? "" : storeFilters.rating) || ""
+  );
 
   const genres = [
     "Action",
@@ -19,9 +31,14 @@ export default function Filter() {
   ];
 
   const handleApplyFilters = () => {
-    setFilters({ year, genre, rating });
-    if (searchQuery) {
-      searchMovies(searchQuery);
+    const newFilters = { year, genre, rating };
+    if (onApply) {
+      onApply(newFilters);
+    } else {
+      setStoreFilters(newFilters);
+      if (searchQuery) {
+        searchMovies(searchQuery);
+      }
     }
   };
 

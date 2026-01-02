@@ -2,11 +2,15 @@
 import { useMovieStore } from "../stores/movieSearchStore";
 import { useState } from "react";
 
-export default function SearchBar() {
+export default function SearchBar({ onSearch }) {
   // Use Movie Store
   const { setSearchQuery: setStoreSearchQuery, searchMovies } = useMovieStore();
   // Handle Search
   const handleSearch = (query) => {
+    if (onSearch) {
+      onSearch(query);
+      return;
+    }
     setStoreSearchQuery(query);
     if (query.trim()) {
       searchMovies(query);

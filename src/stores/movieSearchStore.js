@@ -1,7 +1,7 @@
 // movieSearchStore.js (Zustand store for movie search)
 import { create } from "zustand";
 
-export const useMovieStore = create((set) => ({
+export const useMovieStore = create((set, get) => ({
     // Movies
     movies: [],
     setMovies: (movies) => set({ movies }),
@@ -12,7 +12,7 @@ export const useMovieStore = create((set) => ({
     favoriteMovies: [],
     setFavoriteMovies: (movies) => set({ favoriteMovies: movies }),
     addFavoriteMovie: (movie) => set((state) => ({ favoriteMovies: [...state.favoriteMovies, movie] })),
-    removeFavoriteMovie: (movie) => set((state) => ({ favoriteMovies: state.favoriteMovies.filter((m) => m.id !== movie.id) })),
+    removeFavoriteMovie: (id) => set((state) => ({ favoriteMovies: state.favoriteMovies.filter((m) => m.imdbID !== id) })),
     clearFavoriteMovies: () => set({ favoriteMovies: [] }),
     // Search Query
     searchQuery: "",
@@ -23,7 +23,12 @@ export const useMovieStore = create((set) => ({
     // Error
     error: null,
     setError: (error) => set({ error }),
+    // Filters
+    filters: { year: "", genre: "", rating: "" },
+    setFilters: (filters) => set((state) => ({ filters: { ...state.filters, ...filters } })),
+
     searchMovies: async (query) => {
+        const { filters } = get();
         set({ isLoading: true, error: null });
         try {
             const apiKey = import.meta.env.VITE_OMDB_API_KEY;
@@ -33,7 +38,12 @@ export const useMovieStore = create((set) => ({
                 throw new Error("Missing OMDB API Key or URL in configuration");
             }
 
-            const response = await fetch(`${apiUrl}/?apikey=${apiKey}&s=${query}`);
+            let url = `${apiUrl}/?apikey=${apiKey}&s=${query}`;
+            if (filters.year) {
+                url += `&y=${filters.year}`;
+            }
+
+            const response = await fetch(url);
             const data = await response.json();
 
             if (data.Response === "False") {
